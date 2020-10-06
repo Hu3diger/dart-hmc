@@ -6,6 +6,7 @@ import 'package:imc/blocs/theme.bloc.dart';
 import 'package:imc/ui/android/widgets/iac.widget.dart';
 import 'package:imc/ui/android/widgets/imc.widget.dart';
 import 'package:provider/provider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<IMCWidgetState> _keyIMC = GlobalKey();
   final GlobalKey<IACWidgetState> _keyIAC = GlobalKey();
   PageController pageController = PageController(initialPage: 0);
+  double currentPage;
 
   _refreshIMC(ImcBloc bloc) {
     setState(() {
@@ -28,7 +30,6 @@ class _HomePageState extends State<HomePage> {
       bloc.calculate();
     });
   }
-
   bool isOn = false;
 
   @override
@@ -69,20 +70,31 @@ class _HomePageState extends State<HomePage> {
           })
         ],
         ),
-      body: Container(
-        child: PageView(
-          controller: pageController,
-          children: <Widget>[
-            IMCWidget(
-              key: _keyIMC,
-              notifyParent: _refreshIMC
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              controller: pageController,
+              children: <Widget>[
+                IMCWidget(
+                  key: _keyIMC,
+                  notifyParent: _refreshIMC
+                ),
+                IACWidget(
+                  key: _keyIAC,
+                  notifyParent: _refreshIAC
+                )
+              ],  
             ),
-            IACWidget(
-              key: _keyIAC,
-              notifyParent: _refreshIAC
+          ),
+          Expanded(
+            child: SmoothPageIndicator(
+              controller: pageController,
+              count: 2,
+              effect: ExpandingDotsEffect()
             )
-          ],  
-        ),
+          )
+        ],
       ),
     );
   }
