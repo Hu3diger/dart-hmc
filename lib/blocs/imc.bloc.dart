@@ -5,7 +5,7 @@ import 'package:flutter_masked_text/flutter_masked_text.dart';
 class ImcBloc {
   var heightCtrl = new MaskedTextController(mask: '000');
   var weightCtrl = new MaskedTextController(mask: '000');
-  var result = "Preencha os dados para calcular seu IMC";
+  var result = "IMC - Preencha os dados para calcular";
   var resultIcon = Icons.info_outline;
 
   calculate() {
@@ -43,7 +43,7 @@ class ImcBloc {
   {
       weightCtrl.text = '';
       heightCtrl.text = '';
-      result = "Informe seus dados.";
+      result = "IMC - Preencha os dados para calcular";
       resultIcon = Icons.info_outline;
   }
 }

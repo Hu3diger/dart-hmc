@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:imc/blocs/iac.bloc.dart';
 import 'package:imc/blocs/imc.bloc.dart';
 import 'package:imc/blocs/theme.bloc.dart';
+import 'package:imc/ui/android/widgets/iac.widget.dart';
+import 'package:imc/ui/android/widgets/imc.widget.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,14 +13,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-  var bloc = new ImcBloc();
+  final GlobalKey<IMCWidgetState> _keyIMC = GlobalKey();
+  final GlobalKey<IACWidgetState> _keyIAC = GlobalKey();
+  PageController pageController = PageController(initialPage: 0);
+
+  _refreshIMC(ImcBloc bloc) {
+    setState(() {
+      bloc.calculate();
+    });
+  }
+
+  _refreshIAC(IacBloc bloc) {
+    setState(() {
+      bloc.calculate();
+    });
+  }
+
   bool isOn = false;
+
   @override
   Widget build(BuildContext context) {
     ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
+        backgroundColor: Colors.green[800],
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -32,73 +52,38 @@ class _HomePageState extends State<HomePage> {
                   });
                 })
             ),
-            Text('Calculadora IMC'),
+            Text('Human Mass Calc.'),
           ],
         ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(icon: Icon(Icons.refresh), onPressed: () {
             setState(() {
-              bloc.resetFields();
+              print(pageController.page);
+              if (pageController.page == 0){
+                _keyIMC.currentState.refresh();
+              } else if (pageController.page == 1){
+                _keyIAC.currentState.refresh();
+              }
             });
           })
         ],
         ),
-        body: ListView(
+      body: Container(
+        child: PageView(
+          controller: pageController,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: TextFormField(
-                controller: bloc.heightCtrl,
-                decoration: InputDecoration(
-                  labelText: "Altura (cm)",
-                ),
-                keyboardType: TextInputType.number,
-              ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: TextFormField(
-                  controller: bloc.weightCtrl,
-                  decoration: InputDecoration(
-                    labelText: "Peso (Kg)"
-                    ),
-                    keyboardType: TextInputType.number,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: FlatButton(
-                  color: Theme.of(context).primaryColor,
-                  child: Text(
-                    "Calcular",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                  ), onPressed: () {
-                    setState(() {
-                      bloc.calculate();
-                    });
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: Icon(bloc.resultIcon,
-                  color: Theme.of(context).primaryColor,
-                  size: 100,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  bloc.result,
-                  textAlign: TextAlign.center
-                ),
-              ),
-          ],
+            IMCWidget(
+              key: _keyIMC,
+              notifyParent: _refreshIMC
+            ),
+            IACWidget(
+              key: _keyIAC,
+              notifyParent: _refreshIAC
+            )
+          ],  
         ),
+      ),
     );
   }
 }
