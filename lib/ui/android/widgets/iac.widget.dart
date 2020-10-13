@@ -26,6 +26,15 @@ class IACWidgetState extends State<IACWidget> {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.all(20),
+          child: 
+          Text(
+            "IAC",
+            textScaleFactor: 3,
+            textAlign: TextAlign.center
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.all(20),
           child: TextFormField(
             controller: this.bloc.heightCtrl,
             decoration: InputDecoration(

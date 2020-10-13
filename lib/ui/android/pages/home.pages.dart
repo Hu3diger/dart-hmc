@@ -30,71 +30,69 @@ class _HomePageState extends State<HomePage> {
       bloc.calculate();
     });
   }
+
   bool isOn = false;
 
   @override
   Widget build(BuildContext context) {
     ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
-    return Scaffold(
-      resizeToAvoidBottomPadding: false,
-      appBar: AppBar(
-        backgroundColor: Colors.tealAccent[200],
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+    return Container(
+      child: Scaffold(
+        resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          backgroundColor: Colors.tealAccent[200],
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Padding(
+              //   padding: EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 0.0),
+              //   child: Switch(
+              //     value: isOn,
+              //     onChanged: (val) {
+              //       setState(() {
+              //         isOn = val;
+              //         _themeChanger.setTheme(isOn ? ThemeData.dark() : ThemeData.light());
+              //       });
+              //     })
+              // ),
+              Text('Human Mass Calc.'),
+            ],
+          ),
+          centerTitle: true,
+          // actions: <Widget>[
+          //   IconButton(icon: Icon(Icons.refresh), onPressed: () {
+          //     setState(() {
+          //       print(pageController.page);
+          //       if (pageController.page == 0){
+          //         _keyIMC.currentState.refresh();
+          //       } else if (pageController.page == 1){
+          //         _keyIAC.currentState.refresh();
+          //       }
+          //     });
+          //   })
+          // ],
+        ),
+        body: Column(
           children: [
-            // Padding(
-            //   padding: EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 0.0),
-            //   child: Switch(
-            //     value: isOn,
-            //     onChanged: (val) {
-            //       setState(() {
-            //         isOn = val;
-            //         _themeChanger.setTheme(isOn ? ThemeData.dark() : ThemeData.light());
-            //       });
-            //     })
-            // ),
-            Text('Human Mass Calc.'),
+            Expanded(
+              child: PageView(
+                controller: pageController,
+                children: <Widget>[
+                  IMCWidget(key: _keyIMC, notifyParent: _refreshIMC),
+                  IACWidget(key: _keyIAC, notifyParent: _refreshIAC)
+                ],
+              ),
+            ),
+            BottomAppBar(
+              child: Expanded(
+                  child: SmoothPageIndicator(
+                      controller: pageController,
+                      count: 2,
+                      effect: ExpandingDotsEffect())),
+            ),
           ],
         ),
-        centerTitle: true,
-        // actions: <Widget>[
-        //   IconButton(icon: Icon(Icons.refresh), onPressed: () {
-        //     setState(() {
-        //       print(pageController.page);
-        //       if (pageController.page == 0){
-        //         _keyIMC.currentState.refresh();
-        //       } else if (pageController.page == 1){
-        //         _keyIAC.currentState.refresh();
-        //       }
-        //     });
-        //   })
-        // ],
-        ),
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView(
-              controller: pageController,
-              children: <Widget>[
-                IMCWidget(
-                  key: _keyIMC,
-                  notifyParent: _refreshIMC
-                ),
-                IACWidget(
-                  key: _keyIAC,
-                  notifyParent: _refreshIAC
-                )
-              ],  
-            ),
-          ),
-          Expanded(
-            child: SmoothPageIndicator(
-              controller: pageController,
-              count: 2,
-              effect: ExpandingDotsEffect()
-            )
-          )
-        ],
+        backgroundColor: Colors.lightBlue[300],
       ),
     );
   }
