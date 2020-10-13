@@ -38,37 +38,37 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
-        backgroundColor: Colors.green[800],
+        backgroundColor: Colors.tealAccent[200],
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 0.0),
-              child: Switch(
-                value: isOn,
-                onChanged: (val) {
-                  setState(() {
-                    isOn = val;
-                    _themeChanger.setTheme(isOn ? ThemeData.dark() : ThemeData.light());
-                  });
-                })
-            ),
+            // Padding(
+            //   padding: EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 0.0),
+            //   child: Switch(
+            //     value: isOn,
+            //     onChanged: (val) {
+            //       setState(() {
+            //         isOn = val;
+            //         _themeChanger.setTheme(isOn ? ThemeData.dark() : ThemeData.light());
+            //       });
+            //     })
+            // ),
             Text('Human Mass Calc.'),
           ],
         ),
         centerTitle: true,
-        actions: <Widget>[
-          IconButton(icon: Icon(Icons.refresh), onPressed: () {
-            setState(() {
-              print(pageController.page);
-              if (pageController.page == 0){
-                _keyIMC.currentState.refresh();
-              } else if (pageController.page == 1){
-                _keyIAC.currentState.refresh();
-              }
-            });
-          })
-        ],
+        // actions: <Widget>[
+        //   IconButton(icon: Icon(Icons.refresh), onPressed: () {
+        //     setState(() {
+        //       print(pageController.page);
+        //       if (pageController.page == 0){
+        //         _keyIMC.currentState.refresh();
+        //       } else if (pageController.page == 1){
+        //         _keyIAC.currentState.refresh();
+        //       }
+        //     });
+        //   })
+        // ],
         ),
       body: Column(
         children: [

@@ -32,6 +32,9 @@ class IMCWidgetState extends State<IMCWidget> {
               labelText: "Altura (cm)",
             ),
             keyboardType: TextInputType.number,
+            onChanged: (value) => {
+              widget.notifyParent(this.bloc)
+            },
           ),
           ),
           Padding(
@@ -40,38 +43,20 @@ class IMCWidgetState extends State<IMCWidget> {
               controller: this.bloc.weightCtrl,
               decoration: InputDecoration(
                 labelText: "Peso (Kg)"
-                ),
-                keyboardType: TextInputType.number,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: FlatButton(
-              color: Colors.green[800],
-              child: Text(
-                "Calcular IMC",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ), onPressed: () {
-                widget.notifyParent(this.bloc);
+              ),
+              keyboardType: TextInputType.number,
+              onChanged: (value) => {
+                widget.notifyParent(this.bloc)
               },
             ),
           ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Icon(this.bloc.resultIcon,
-              color: Colors.green[800],
-              size: 100,
-            ),
+          Icon(this.bloc.resultIcon,
+            color: Colors.green[800],
+            size: 80,
           ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              this.bloc.result,
-              textAlign: TextAlign.center
-            ),
+          Text(
+            this.bloc.result,
+            textAlign: TextAlign.center
           ),
       ]
     );

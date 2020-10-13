@@ -32,6 +32,9 @@ class IACWidgetState extends State<IACWidget> {
               labelText: "Altura (cm)",
             ),
             keyboardType: TextInputType.number,
+            onChanged: (value) {
+              widget.notifyParent(this.bloc);
+            },
           ),
           ),
           Padding(
@@ -42,36 +45,18 @@ class IACWidgetState extends State<IACWidget> {
                 labelText: "Circunferência do quadril (cm)"
                 ),
                 keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  widget.notifyParent(this.bloc);
+                },
             ),
           ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: FlatButton(
-              color: Colors.green[800],
-              child: Text(
-                "Calcular IAC",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ), onPressed: () {
-                widget.notifyParent(this.bloc);
-              },
-            ),
+          Icon(this.bloc.resultIcon,
+            color: Colors.green[800],
+            size: 80,
           ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Icon(this.bloc.resultIcon,
-              color: Colors.green[800],
-              size: 100,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              this.bloc.result,
-              textAlign: TextAlign.center
-            ),
+          Text(
+            this.bloc.result,
+            textAlign: TextAlign.center
           ),
       ]
     );
