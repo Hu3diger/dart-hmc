@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:imc/blocs/theme.bloc.dart';
-import 'package:imc/ui/android/pages/home.pages.dart';
+import 'package:imc/ui/android/pages/first-steps.pages.dart';
 import 'package:provider/provider.dart';
 
 
@@ -26,7 +26,7 @@ class MaterialAppWithTheme extends StatelessWidget {
     return MaterialApp(
       title: 'IMC',
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: FirstStepsPage(),
         theme: theme.getTheme()
     );
   }
