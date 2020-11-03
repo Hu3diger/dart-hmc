@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imc/ui/android/pages/home.pages.dart';
+import 'package:hmc/ui/android/pages/home.pages.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 
@@ -17,27 +17,20 @@ class _FirstStepsPage extends State<FirstStepsPage> {
 
       slides.add(
         new Slide(
-          title: "ERASER",
-          description: "Allow miles wound place the leave had. To sitting subject no improve studied limited",
-          backgroundColor: Color(0xfff5a623),
+          title: "IMC",
+          description: "Para realizar o cálculo de IMC, basta preencher os campos:\n- Peso em Kg \n- Altura em cm. \nO cálculo será efetuado automaticamente \n\n\n Conceito de IMC: É um cálculo que serve para: \n - Avaliar se a pessoa está dentro do seu peso ideal em relação à altura.",
+          backgroundColor: Color(0XFF00897B),
+          pathImage: "img/imc.png"
         ),
       );
       slides.add(
         new Slide(
-          title: "PENCIL",
-          description: "Ye indulgence unreserved connection alteration appearance",
-          backgroundColor: Color(0xff203152),
+          title: "IAC",
+          description: "Para realizar o cálculo de IAC, basta preencher os campos:\n- Altura em cm \n- Circunferência do quadrial em cm. \nO cálculo será efetuado automaticamente \n\n\n Conceito de IAC: É um cálculo que serve para: \n - Avaliar o percentual de gordura presente no corpo.",
+          backgroundColor: Color(0XFF00796B),
+           pathImage: "img/iac.png"
         ),
       );
-      slides.add(
-        new Slide(
-          title: "RULER",
-          description:
-          "Much evil soon high in hope do view. Out may few northward believing attempted. Yet timed being songs marry one defer men our. Although finished blessing do of",
-          backgroundColor: Color(0xff9932CC),
-        ),
-      );
-
   }
 
   void onDonePress() {

@@ -1,5 +1,5 @@
-name: imc
-description: A new Flutter project.
+name: hmc
+description: Human Mass Calculator.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -50,9 +50,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - img/icon.png
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - img/icon.png
+    - img/imc.png
+    - img/iac.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

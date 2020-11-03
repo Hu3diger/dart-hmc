@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:imc/blocs/theme.bloc.dart';
-import 'package:imc/ui/android/pages/first-steps.pages.dart';
+import 'package:hmc/blocs/theme.bloc.dart';
+import 'package:hmc/ui/android/pages/first-steps.pages.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());

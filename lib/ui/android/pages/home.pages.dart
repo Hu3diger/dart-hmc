@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:imc/blocs/iac.bloc.dart';
-import 'package:imc/blocs/imc.bloc.dart';
-import 'package:imc/blocs/theme.bloc.dart';
-import 'package:imc/ui/android/widgets/iac.widget.dart';
-import 'package:imc/ui/android/widgets/imc.widget.dart';
+import 'package:hmc/blocs/iac.bloc.dart';
+import 'package:hmc/blocs/imc.bloc.dart';
+import 'package:hmc/blocs/theme.bloc.dart';
+import 'package:hmc/ui/android/widgets/iac.widget.dart';
+import 'package:hmc/ui/android/widgets/imc.widget.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
-          backgroundColor: Colors.tealAccent[200],
+          backgroundColor: Color(0XFF004D4B),
           title: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -83,15 +83,19 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             BottomAppBar(
+              color: Colors.transparent,
               child: Expanded(
                   child: SmoothPageIndicator(
                       controller: pageController,
                       count: 2,
-                      effect: ExpandingDotsEffect())),
+                      effect: ExpandingDotsEffect(
+                        dotColor:  Colors.tealAccent[700],
+		                    activeDotColor:  Color(0XFF004D4B)
+                      ))),
             ),
           ],
         ),
-        backgroundColor: Colors.lightBlue[300],
+        backgroundColor: Colors.white,
       ),
     );
   }
